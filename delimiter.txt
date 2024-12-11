@@ -1,0 +1,67 @@
+delimiter //
+create procedure obtenEmpleados(in min_salary decimal(10,2))
+  begin
+    	select a.emp_no, a.first_name, b.salary from employees a, salaries b
+	where a.emp_no=b.emp_no
+	and salary>= min_salary;
+	end//
+
+
+call obtenEmpleados(100000)//
+
+
+create procedure agregatEmpleados(
+	in emp_no int,
+	in birth_date date,
+	in first_name varchar(14),
+	in last_name varchar(16),
+	in genderchar(1),
+	hire_date fate
+	) begin
+	insert into employees (emp_no, birth_date, first_name, last_name, gender,hire_date)
+	values (emp_no, birth_date, first_name, last_name, gender, hire_date);
+end; //
+
+call agregarEmpleado(12121212,'2000-12-23','Juan','Garcia','M',curdate())//
+
+
+select * from employees emp_no=12121212;//
+
+
+
+
+create producure eliminaEmpleado(in n int) begin
+delete from employees where emp_no=n;
+end //
+
+SET GLOBAL log_bin_trust_function_creators=1
+
+
+
+11/20/2024
+
+delimiter //
+
+create function holaMmundo() returns varchar(20)
+	begin
+		return 'hola mundo';
+	end //
+
+select holaMundo()//
+
+create function mensaje() returns varchar(30)
+	begin
+		declare salida varchar(30) default 'hola mundo';
+		return salida;
+	end //
+
+select mensaje()//
+
+create function mensaje2 (entrada varchar(30)) returns varchar(30)
+	begin
+		declare salida varchar(30);
+		set salida=entrada;
+		return salida;
+	end //
+
+select mensaje2('pongase a chambear')//
